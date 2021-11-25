@@ -1,18 +1,50 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+import { environment } from 'src/environments/environment';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ComponentsModule } from './components/components.module';
+import { ConfigModule } from './config/config.module';
+import { ToastModule } from './components/toast';
+import { ConfirmModule } from './components/confirm';
+import { LoadingModule } from './components/loading';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule,
+    AppRoutingModule,
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    ComponentsModule,
+    ConfigModule,
+    HttpClientModule,
+    ConfirmModule.forRoot(),
+    LoadingModule.forRoot(),
+    ToastModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-Br' },
+    { provide: BUCKET, useValue: 'wk-marketplace.appspot.com' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

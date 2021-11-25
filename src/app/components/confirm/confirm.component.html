@@ -1,0 +1,18 @@
+<div class="modal fade show" id="myModal" role="dialog" style="display: block; background:rgba(0,0,0,.4); z-index: 1000;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color: red"><span class="fas fa-exclamation-triangle"> Excluir?</span>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>{{data.message}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="close()">Não</button>
+                <button type="button" class="btn btn-primary" (click)="data.siFn(); close()">Sim </button>
+            </div>
+        </div>
+    </div>
+</div>

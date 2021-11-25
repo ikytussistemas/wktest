@@ -1,0 +1,126 @@
+<div class="card">
+  <div class="page-top shadow-sm">
+    Cadastro de Cliente
+    <button class="btn btn-warning btn-xs btn-pdr fas fa-arrow-circle-left float-right sombra-btn" (click)="return()"
+      title="voltar">
+    </button>
+
+  </div>
+  <div class="card-body">
+
+    <div class="col-xs-12 col-md-12">
+      <div class="row justify-content-center">
+
+        <div class="col-xs-12 col-md-12">
+          <form [formGroup]="formulario" (ngSubmit)="onSubmit(); $event.preventDefault()"
+            *ngIf="formulario !== undefined">
+
+            <div class="col-xs-12">
+
+              <div class="row">
+
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input id="name" type="text" class="form-control" formControlName="name" IkUpCase />
+                    <valid-msg [control]="formulario.controls['name']"></valid-msg>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input id="email" type="email" class="form-control" formControlName="email" IkUpCase />
+                    <valid-msg [control]="formulario.controls['email']"></valid-msg>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-md-3">
+                  <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input id="cpf" type="text" class="form-control" formControlName="cpf" IkMask="999.999.999-99" />
+                    <valid-msg [control]="formulario.controls['cpf']"></valid-msg>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <div class="form-group">
+                    <label for="birthday">Data Nascimento</label>
+                    <input id="birthday" type="date" class="form-control" formControlName="birthday" />
+                    <valid-msg [control]="formulario.controls['birthday']"></valid-msg>
+                  </div>
+                </div>
+                <fieldset>
+                  <legend>Endereço:</legend>
+                  <div class="col-sm-12">
+                    <div formGroupName="address">
+                      <div class="row">
+
+                        <div class="col-sm-12 col-md-3">
+                          <div class="form-group">
+                            <label for="cep">CEP</label>
+                            <input id="cep" type="text" class="form-control" (blur)="consultaCEP()"
+                              formControlName="cep" IkMask="99999-999" />
+                          </div>
+                        </div>
+                        <div class="col-sm-12 col-md-7">
+                          <div class="form-group">
+                            <label for="logradouro">Logradouro</label>
+                            <input id="logradouro" type="text" class="form-control" formControlName="logradouro" />
+                          </div>
+                        </div>
+                        <div class="col-sm-12 col-md-2">
+                          <div class="form-group">
+                            <label for="numero">Número</label>
+                            <input id="numero" type="text" class="form-control" formControlName="numero" />
+                          </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                          <div class="form-group">
+                            <label for="complemento">Complemento</label>
+                            <input id="complemento" type="text" class="form-control" formControlName="complemento" />
+                          </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                          <div class="form-group">
+                            <label for="bairro">Bairro</label>
+                            <input id="bairro" type="text" class="form-control" formControlName="bairro" />
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-md-3">
+                          <div class="form-group">
+                            <label for="cidade" class="control-label">Cidade</label>
+                            <select class="form-control" id="cidade" formControlName="cidade">
+                              <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-3">
+                          <div class="form-group">
+                            <label for="estado" class="control-label">Estado</label>
+                            <select class="form-control" id="estado" formControlName="estado" (change)="getCidades()">
+                              <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+              </div>
+
+              <hr style="margin: 2px;" />
+
+            </div>
+
+            <toolbar-edit [formulario]="formulario" [toolBarOptions]="toolBarOptions"> </toolbar-edit>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

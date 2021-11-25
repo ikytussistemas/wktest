@@ -1,0 +1,17 @@
+<button class="float fab-btn" id="menu-share">
+  <i class="fas fa-shopping-basket btn-icon-menu"></i>
+  <div class="label-container">
+    <div class="label-text">Menu</div>
+  </div>
+</button>
+
+<ul>
+  <li *ngFor=" let button of buttons">
+    <button class="fab-btn" (click)="goTo(button.url)">
+      <i class="fas fa-{{button.icon}} btn-icon"></i>
+      <div class="label-container">
+        <div class="label-text">{{button.label}}</div>
+      </div>
+    </button>
+  </li>
+</ul>

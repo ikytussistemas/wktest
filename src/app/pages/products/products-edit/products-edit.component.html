@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="page-top shadow-sm">
+    Cadastro de Produto
+    <button class="btn btn-warning btn-xs btn-pdr fas fa-arrow-circle-left float-right sombra-btn"
+            (click)="return()"
+            title="voltar">
+    </button>
+
+  </div>
+  <div class="card-body">
+    <div class="col-xs-12 col-md-12">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-md-12">
+          <form [formGroup]="formulario" (ngSubmit)="onSubmit(); $event.preventDefault()"
+            *ngIf="formulario !== undefined">
+            <div class="col-xs-12">
+              <div class="row">
+
+                <div class="col-sm-12 col-md-9">
+                  <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input id="name" type="text" class="form-control" formControlName="name" IkUpCase/>
+                    <valid-msg [control]="formulario.controls['name']"></valid-msg>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-md-3">
+                  <div class="form-group">
+                    <label for="valor">Valor</label>
+                    <input id="valor" type="number" class="form-control" formControlName="value" step="0.1" lang="nb"/>
+                    <valid-msg [control]="formulario.controls['value']"></valid-msg>
+                  </div>
+                </div>
+
+              </div>
+
+              <hr style="margin: 2px;" />
+
+            </div>
+            <toolbar-edit [formulario]="formulario"></toolbar-edit>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

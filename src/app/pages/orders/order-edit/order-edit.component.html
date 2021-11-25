@@ -1,0 +1,115 @@
+<div class="card">
+  <div class="page-top shadow-sm">
+    Cadastro de Pedido
+    <button class="btn btn-warning btn-xs btn-pdr fas fa-arrow-circle-left float-right sombra-btn" (click)="return()"
+      title="voltar">
+    </button>
+
+  </div>
+  <div class="card-body">
+    <toolbar-base>
+      <div itens class="search">
+        <label for="cpf" class="searchLabel">CPF:</label>
+        <input id=cpf type="text" class="border-r border-l" #cpf IkMask="999.999.999-99" />
+        <button class="btn btn-primary" (click)="findCustomerByCpf(cpf.value)"><i class="fas fa-search"></i></button>
+        <label for="cpf" class="searchLabel">Cliente:</label>
+        <input id=nome type="text" class="border-r border-l" [(ngModel)]="customer.name" disabled />
+      </div>
+    </toolbar-base>
+    <hr>
+    <toolbar-base>
+      <div itens class="col-xs-12 col-md-12">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit(); $event.preventDefault()"
+          *ngIf="formulario !== undefined">
+          <div class="col-xs-12">
+            <div class="row">
+
+              <div class="col-sm-12 col-md-3">
+                <div class="form-group">
+                  <label for="cod">Código</label>
+                  <input id="cod" type="text" class="form-control" formControlName="cod" IkUpCase />
+                  <valid-msg [control]="formulario.controls['cod']"></valid-msg>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label for="time">Data/Hora</label>
+                  <input id="time" type="text" class="form-control" formControlName="time" />
+                  <valid-msg [control]="formulario.controls['time']"></valid-msg>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-4">
+                <div class="form-group" formGroupName="customer">
+                  <label for="customer">Cliente</label>
+                  <input id="customer" type="text" class="form-control" formControlName="name" />
+                </div>
+                <valid-msg [control]="formulario.controls['customer']"></valid-msg>
+              </div>
+
+              <div class="col-xs-12 col-md-2">
+                <div class="form-group">
+                  <label for="amount">Total do Pedido</label>
+                  <input id="amount" type="number" class="form-control" formControlName="amount" />
+                  <valid-msg [control]="formulario.controls['amount']"></valid-msg>
+                </div>
+              </div>
+
+            </div>
+
+            <hr style="margin: 2px;" />
+
+          </div>
+          <toolbar-edit [formulario]="formulario"></toolbar-edit>
+        </form>
+      </div>
+    </toolbar-base>
+    <hr>
+    <toolbar-base>
+      <div itens>
+        <div class="options">
+          <button class="btn btn-primary" (click)="openModalProduct()">
+            Novo Item
+            <i class="fas fa-receipt"></i>
+          </button>
+        </div>
+        <div class="scrolling">
+          <table class="table table-striped table-bordered table-sm">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Vr_Unit</th>
+                <th>Vr_Total</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of itens">
+                <td attr.data-label='Produto'>{{item.product?.name || ''}}</td>
+                <td attr.data-label='Quantidade'>{{item.quantity || 0}}</td>
+                <td attr.data-label='Vr_Unitário'>{{item.product?.value || 0 | customPipe: 'currency'}}</td>
+                <td attr.data-label='Total'>{{item.amount || 0 | customPipe: 'currency'}}</td>
+                <td>
+                  <a class="componenteform" *ngFor="let button of tableOptions.buttons">
+                    <button type="button"
+                      class="btn btn-{{button.color}} btn-pdr fa fa-{{button.icon || 'plus'}} sombra-btn"
+                      title="{{button.title}}" data-placement="bottom" (click)="button.eventHandler(item)">
+                    </button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5" *ngIf="itens.length < 1" class="table-message-empty">
+                  {{tableOptions.emptyMessage}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </toolbar-base>
+  </div>
+</div>
+
+<app-itens-modal (fnSave)="addIten($event)" #modalProducts></app-itens-modal>

@@ -1,0 +1,23 @@
+<div class="toolbar">
+  <div class="col-md-12">
+    <div class="row toolbar-buttons">
+
+      <div class="col-sm-1" style="padding: 2px; margin: 0 1px;" *ngFor=" let button of toolBarOptions.buttons">
+        <button type="button" class="btn btn-{{button.color}} btn-block toolbar-footer-btn" title="{{button.title}}"
+          (click)="button.eventHandler()">
+          <span class="d-none d-md-inline"></span>
+          <i class="fas fa-{{button.icon}}"></i>
+        </button>
+      </div>
+
+      <div class="col-sm-{{10 - toolBarOptions.buttons?.length}}"></div>
+      <div class="col-sm-1" style="padding: 2px;">
+        <button type="submit" class="btn btn-outline-success btn-block toolbar-footer-btn"
+          [disabled]="!formulario.valid">
+          <span class="d-none d-md-inline"></span>
+          <i class="fas fa-save"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

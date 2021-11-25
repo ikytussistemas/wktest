@@ -1,0 +1,6 @@
+<base-layout titletop="Produtos Cadastrados" entity="list">
+  <div body>
+    <app-table [tableOptions]="tableOptions" [entity]='list' [lastObject]='lastObject' [page]="page"
+      (fnNext)="nextPage()" (fnPrev)="prevPage()" (fnList)="countPage($event)"></app-table>
+  </div>
+</base-layout>

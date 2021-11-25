@@ -1,0 +1,27 @@
+<div class="card">
+
+  <div class="page-top shadow-sm">
+      {{titletop}}
+      <ng-content select="[buttons]"></ng-content>
+      <a [routerLink]="['0','add']">
+          <button title="novo" class="btn btn-success btn-xs btn-pdr fa fa-plus-circle float-right sombra-btn"></button>
+      </a>
+  </div>
+  <div>
+      <ng-content select="[search]"></ng-content>
+  </div>
+  <div *ngIf="entity === undefined" class="text-center">
+      <loading-spinner></loading-spinner>
+  </div>
+  <div *ngIf="entity !== undefined">
+
+      <div class="card-body">
+          <ng-content select="[body]"></ng-content>
+      </div>
+      <span>
+          <ng-content select="[footer]"></ng-content>
+      </span>
+
+  </div>
+
+</div>

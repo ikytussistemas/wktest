@@ -1,0 +1,32 @@
+.backdrop{
+  background-color:rgba(0,0,0,0.6);
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  z-index: 998;
+}
+
+.modal {
+  z-index: 999;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-content{
+  max-width: 900px;
+}
+
+@media (min-width: 576px){
+  .modal-dialog {
+      max-width: 900px;
+      max-height: 700px;
+      margin: 1.75rem auto;
+  }
+}

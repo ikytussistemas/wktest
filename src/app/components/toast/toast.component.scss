@@ -1,0 +1,25 @@
+.toast {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  margin: 20 auto;
+  margin-bottom: 0;
+  min-width: 100%;
+}
+
+.alert-danger {
+  background-color:rgba(255, 0, 0, 0.8);
+}
+
+.alert-success {
+  background-color:rgba(6, 243, 25, 0.8);
+}
+
+.alert-warning {
+  background-color:rgba(227, 243, 7, 0.8);
+}
+
+.alert-info {
+  background-color:rgba(42, 215, 238, 0.8);
+}

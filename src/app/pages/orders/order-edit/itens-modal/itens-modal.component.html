@@ -1,0 +1,35 @@
+<app-modal title="Produtos" (fnSave)="save()" #modal>
+  <div body>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label for="product">Produto:</label>
+            <select id="product" [(ngModel)]="product" (change)="refreshItem()">
+              <option *ngFor="let opt of products" [ngValue]="opt">{{ opt.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label for="vrUnit">Vr Unitário:</label>
+            <input id="vrUnit" type="number" [(ngModel)]="product.value" (change)="refreshValues()">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label for="qtd">Quantidade:</label>
+            <input id="qtd" type="number" [(ngModel)]="iten.quantity" (change)="refreshValues()">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label for="amount">Total:</label>
+            <input id="amount" type="number" [(ngModel)]="iten.amount" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</app-modal>

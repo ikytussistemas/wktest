@@ -1,0 +1,10 @@
+<base-layout titletop="Clientes Cadastrados" entity="list">
+
+  <div body class="scrolling">
+
+    <app-table [tableOptions]="tableOptions" [entity]='list' [lastObject]='lastObject' [page]="page"
+      (fnNext)="nextPage()" (fnPrev)="prevPage()"></app-table>
+
+  </div>
+
+</base-layout>

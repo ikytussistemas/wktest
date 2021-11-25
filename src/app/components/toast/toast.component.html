@@ -1,0 +1,15 @@
+<div class=" alert alert-{{data.type}} toast row" id="toast" role="dialog" [@fadeAnimation]="{value: animationState, params:
+  { fadeIn: toastConfig.animation.fadeIn, fadeOut: toastConfig.animation.fadeOut }}"
+  (@fadeAnimation.done)="onFadeFinished($event)">
+
+  <div class="col-2 align-self-center">
+    <i class="fas fa-{{ iconType }}"></i>
+  </div>
+  <div class="col-8 text-center">
+    <p>{{data.text}}</p>
+  </div>
+  <div class="col-2">
+    <button type="button" class="close " data-dismiss="modal" (click)="close()">&times;</button>
+  </div>
+
+</div>

@@ -1,0 +1,173 @@
+@import "../../../../assets/scss/colors";
+
+*{padding:0;margin:0;}
+
+.float{
+	position:fixed;
+	width:50px;
+	height:50px;
+	bottom:20px;
+	left:14px;
+	background-color:hsla(0, 0%, 100%, 0.459);
+	color:#FFF;
+  border: 1px dotted rgba(130, 130, 130, 0.3);
+	border-radius:50px;
+	text-align:center;
+	z-index:997;
+	animation: bot-to-top 2s ease-out;
+  animation: pulse 2s infinite;
+}
+
+.fab-btn {
+  clear:both;
+}
+
+.fab-btn-item{
+  background-color:rgb(47, 107, 236);
+	color:#FFF;
+	border-radius:20px;
+	text-align:center;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  border: 1px solid rgba(130, 130, 130, 0.3);
+	width:40px;
+	height:40px;
+	display:block;
+
+}
+
+.label-container{
+	position:relative;
+	bottom:33px;
+	left:60px;
+	display:table;
+	visibility: hidden;
+  float:right;
+}
+
+.label-text{
+	color:#FFF;
+	background:rgba(51,51,51,0.5);
+	display:table-cell;
+	vertical-align:middle;
+	padding:5px;
+	border-radius:15px;
+}
+
+.fab-tooltip{
+  position:relative;
+	bottom:30px;
+	left:70px;
+	display:table;
+	visibility: hidden;
+  float:left;
+}
+
+ul{
+	position:fixed;
+	left:15px;
+	padding-bottom:20px;
+	bottom:50px;
+	z-index:100;
+}
+
+ul li{
+	list-style:none;
+	margin-bottom:10px;
+}
+
+ul li button{
+	background-color:rgb(47, 107, 236);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  border: 1px solid rgba(130, 130, 130, 0.3);
+	width:50px;
+	height:50px;
+	display:block;
+}
+
+ul:hover{
+	visibility:visible!important;
+	opacity:1!important;
+}
+
+.btn-icon, .btn-icon-menu{
+	font-size:24px;
+	margin-top:10px;
+}
+.btn-icon-menu{
+  margin-top: 12px;
+  color: $color-primary;
+}
+
+button#menu-share + ul{
+  visibility: hidden;
+}
+
+button#menu-share:hover + ul{
+  visibility: visible;
+  animation: scale-in 0.5s;
+}
+
+button#menu-share i{
+	animation: rotate-in 0.5s;
+}
+
+button#menu-share:hover > i{
+	animation: rotate-out 0.5s;
+}
+
+button.fab-btn>div.label-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease;
+}
+
+button.fab-btn:hover>div.label-container{
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu-logo {
+  width: 40px;
+  height: 40px;
+  margin-top: 3px;
+}
+
+@keyframes bot-to-top {
+    0%   {bottom:-40px}
+    50%  {bottom:40px}
+}
+
+@keyframes scale-in {
+    from {transform: scale(0);opacity: 0;}
+    to {transform: scale(1);opacity: 1;}
+}
+
+@keyframes rotate-in {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@keyframes rotate-out {
+    from {transform: rotate(360deg);}
+    to {transform: rotate(0deg);}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}

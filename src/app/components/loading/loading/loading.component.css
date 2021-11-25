@@ -1,0 +1,62 @@
+.centralize, .cdk-overlay-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes colors {
+  0% {
+    border-left-color: #4285f4;
+    border-right-color: #4285f4;
+    color: #4285f4;
+  }
+  25% {
+    border-left-color: #de3e35;
+    border-right-color: #1b9a59;
+    color: #de3e35;
+  }
+  50% {
+    border-left-color: #f7c223;
+    border-right-color: #f7c223;
+    color: #f7c223;
+  }
+  75% {
+    border-left-color: #1b9a59;
+    border-right-color: #de3e35;
+    color: #1b9a59;
+  }
+  100% {
+    border-left-color: #4285f4;
+    border-right-color: #4285f4;
+    color: #4285f4;
+  }
+}
+
+.spinner {
+  box-shadow: inset 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-top: none;
+  border-bottom: none;
+  border-left-color: #22a6b3;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  justify-self: center;
+  align-self: center;
+  animation: spin 1.2s linear infinite, colors 1.2s ease-in-out infinite;
+}
+.msg {
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  margin-top: 50px;
+  animation: colors 1.2s ease-in-out infinite;
+}
