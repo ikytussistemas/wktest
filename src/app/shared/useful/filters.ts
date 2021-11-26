@@ -1,5 +1,4 @@
 export class Filters {
-
     ativo: boolean;
     dia: number;
     instrutor: string;

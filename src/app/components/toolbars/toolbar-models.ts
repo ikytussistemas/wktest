@@ -10,7 +10,7 @@ type SearchFile = {
   filterField: string;
   placeholder: string;
   mask?: string;
-  listValues?:listValue[];
+  listValues?: listValue[];
 }
 
 export class ToolbarOptions {

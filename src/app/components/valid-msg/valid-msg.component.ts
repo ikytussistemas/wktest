@@ -8,7 +8,7 @@ import { AbstractControl } from '@angular/forms';
       {{ text }}
     </div>
   `,
-  styles: [ ]
+  styles: []
 })
 export class ValidMsgComponent {
 

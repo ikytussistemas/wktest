@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
   @Input() tableOptions: TableOptions;
   @Input() entity: any[];
   @Input() lastObject: any;
-  @Input() page=1;
+  @Input() page = 1;
 
   @Output() fnNext = new EventEmitter();
   @Output() fnPrev = new EventEmitter();
@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.headers = this.tableOptions.headers;
-    if(!this.headers.includes('Opções')){
+    if (!this.headers.includes('Opções')) {
       this.headers.push('Opções');
     }
     this.fields = this.tableOptions.fields;

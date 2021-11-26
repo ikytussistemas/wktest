@@ -1,18 +1,19 @@
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ChangeDetectorRef, Directive, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { EMPTY } from 'rxjs/internal/observable/empty';
 import { finalize, map, switchMap, take } from 'rxjs/operators';
+
+import { Cidade, Endereco, EstadoBr, Filters } from '../useful';
 import { ConfirmService } from 'src/app/components/confirm';
+import { ConsultaCepService, ErrorHandlerService, ImageService } from '../services';
+import { GenericService } from './generic.service';
 import { LoadingService } from 'src/app/components/loading';
 import { ToastService } from 'src/app/components/toast';
 
-import { ConsultaCepService, ErrorHandlerService, ImageService } from '../services';
-import { Cidade, Endereco, EstadoBr, Filters } from '../useful';
-import { GenericService } from './generic.service';
-
 @Directive()
-export abstract class GenericPageEdit<T extends {id: string}, S extends GenericService<{ id: string }>> implements OnInit {
+export abstract class GenericPageEdit<T extends { id: string }, S extends GenericService<{ id: string }>> implements OnInit {
 
   object: T;
   filter = new Filters();
@@ -41,8 +42,7 @@ export abstract class GenericPageEdit<T extends {id: string}, S extends GenericS
     protected service: S,
     protected urlImg: string,
     protected urlList: string
-    ) {
-    //this.auth = this.injector.get(AuthService);
+  ) {
     this.cd = this.injector.get(ChangeDetectorRef);
     this.cepService = this.injector.get(ConsultaCepService);
     this.confirm = this.injector.get(ConfirmService);
@@ -87,7 +87,7 @@ export abstract class GenericPageEdit<T extends {id: string}, S extends GenericS
     }, err => {
       this.toast.danger(`Falha ao localizar documento!!: (${this.handleError(err)})`);
     });
-   }
+  }
 
   newRecord() {
     this.formConstructorNew().then((form) => {
@@ -119,11 +119,11 @@ export abstract class GenericPageEdit<T extends {id: string}, S extends GenericS
             });
 
             uploadTask.snapshotChanges().pipe(finalize(() => {
-                this.imageService.getURL(this.urlImg, this.object.id).subscribe( URL => {
-                  this.object['url_perfil'] = URL;
-                  this.update(this.object);
-                })
+              this.imageService.getURL(this.urlImg, this.object.id).subscribe(URL => {
+                this.object['url_perfil'] = URL;
+                this.update(this.object);
               })
+            })
             ).subscribe();
 
           } else {
@@ -178,7 +178,7 @@ export abstract class GenericPageEdit<T extends {id: string}, S extends GenericS
   }
 
   async formConstructorById() {
-   return this.formBuilder.group({
+    return this.formBuilder.group({
     });
   }
 
@@ -194,12 +194,12 @@ export abstract class GenericPageEdit<T extends {id: string}, S extends GenericS
   chageCitys() {
     if (this.object !== undefined && this.object.hasOwnProperty('address')) {
       this.formulario.get('address.estado').valueChanges
-      .pipe(
-        map(estado => this.estados.filter(e => e.sigla === estado)),
-        map(estados => estados && estados.length > 0 ? estados[0].id : EMPTY),
-        switchMap((estadoId: number) => this.cepService.getCidades(estadoId)),
-      )
-      .subscribe(cidades => this.cidades = cidades);
+        .pipe(
+          map(estado => this.estados.filter(e => e.sigla === estado)),
+          map(estados => estados && estados.length > 0 ? estados[0].id : EMPTY),
+          switchMap((estadoId: number) => this.cepService.getCidades(estadoId)),
+        )
+        .subscribe(cidades => this.cidades = cidades);
     }
   }
 
@@ -226,7 +226,7 @@ export abstract class GenericPageEdit<T extends {id: string}, S extends GenericS
     });
   }
 
-  getEstados(){
+  getEstados() {
     this.cepService.getEstadosBr().pipe(take(1)).subscribe(dados => this.estados = dados);
   }
 
@@ -236,7 +236,7 @@ export abstract class GenericPageEdit<T extends {id: string}, S extends GenericS
     });
   }
 
-  listFactory() {}
+  listFactory() { }
 
   handleError(erro: any) {
     return this.erroService.handler(erro);

@@ -1,9 +1,9 @@
 import { Component, Injector } from '@angular/core';
 
-import { TableButtonColor, TableButtonIcon, TableOptions } from '../../../components/table/table-models';
+import { GenericPageList } from '../../../shared/abstracts/generic.page-list';
 import { Product } from '../../../shared/models/product.model';
 import { ProductService } from '../../../shared/services/product.service';
-import { GenericPageList } from '../../../shared/abstracts/generic.page-list';
+import { TableButtonColor, TableButtonIcon, TableOptions } from '../../../components/table/table-models';
 import { ToolbarOptions } from 'src/app/components/toolbars/toolbar-models';
 
 @Component({
@@ -13,7 +13,6 @@ import { ToolbarOptions } from 'src/app/components/toolbars/toolbar-models';
 })
 export class ProductsListComponent extends GenericPageList<Product, ProductService> {
 
-  filter: any;
   toolbarOptions: ToolbarOptions = {
     count: 5,
     counts:[5, 10, 15, 20],
@@ -51,8 +50,4 @@ export class ProductsListComponent extends GenericPageList<Product, ProductServi
   goToEdit(id: string){
     this.router.navigate([`products/${id}/edit`])
   }
-
-  filtrar(event?: any){
-  }
-
 }

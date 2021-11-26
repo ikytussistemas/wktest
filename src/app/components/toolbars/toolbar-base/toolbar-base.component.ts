@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IkButton } from '../../buttons/ButtonIcons';
 
+import { IkButton } from '../../buttons/ButtonIcons';
 
 export type ToolBarOptions = {
   buttons?: IkButton[],
   emptyMessage?: string,
 }
-
 
 @Component({
   selector: 'toolbar-base',

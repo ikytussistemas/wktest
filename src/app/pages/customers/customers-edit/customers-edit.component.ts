@@ -1,7 +1,8 @@
 import { Component, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
+
 import { Customer } from '../../../shared/models/customer.model';
 import { CustomerService } from 'src/app/shared/services';
-import { Validators } from '@angular/forms';
 import { GenericPageEdit } from 'src/app/shared/abstracts/generic.page-edit';
 
 @Component({
@@ -10,8 +11,6 @@ import { GenericPageEdit } from 'src/app/shared/abstracts/generic.page-edit';
   styleUrls: ['./customers-edit.component.scss']
 })
 export class CustomersEditComponent extends GenericPageEdit<Customer, CustomerService> {
-
-  toolBarOptions
 
   constructor(
     protected injector: Injector,

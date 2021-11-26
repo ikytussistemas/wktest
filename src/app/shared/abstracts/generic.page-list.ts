@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
 import { ConfirmService } from 'src/app/components/confirm';
-import { LoadingService } from 'src/app/components/loading';
-import { ToastService } from 'src/app/components/toast';
+import { Filters } from '../useful';
 import { GenericService } from '../abstracts/generic.service';
 import { ImageService } from '../services';
-import { Filters } from '../useful';
+import { LoadingService } from 'src/app/components/loading';
+import { ToastService } from 'src/app/components/toast';
 
 
 @Directive()
@@ -20,7 +20,7 @@ export abstract class GenericPageList<T extends { id: string }, S extends Generi
   offset = 5;
   lastObject: T;
   prevLists = []
-  page=1;
+  page = 1;
 
   protected confirm: ConfirmService;
   protected load: LoadingService;
@@ -69,24 +69,24 @@ export abstract class GenericPageList<T extends { id: string }, S extends Generi
     );
   }
 
-  countPage(offset: number){
+  countPage(offset: number) {
     this.offset = offset;
     this.getList();
   }
 
   nextPage() {
     this.prevLists.push(this.list);
-    this.getList(this.lastObject['name']);
-    this.page+=1;
+    this.getList(this.lastObject[this.orderField]);
+    this.page += 1;
   }
 
   prevPage() {
-    if(this.prevLists[this.page-2]){
-      this.list = this.prevLists[this.page-2];
+    if (this.prevLists[this.page - 2]) {
+      this.list = this.prevLists[this.page - 2];
     }
     this.prevLists.pop()
     this.lastObject = this.list[this.list.length - 1];
-    this.page-=1;
+    this.page -= 1;
   }
 
   openModalDelete(id: string, message: string) {

@@ -1,13 +1,13 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 
-import { GenericPageEdit } from 'src/app/shared/abstracts/generic.page-edit';
+import { take } from 'rxjs/operators';
+
 import { Customer, ItenOrder, Order, Product } from '../../../shared/models';
 import { CustomerService, OrderService } from '../../../shared/services';
-import { take } from 'rxjs/operators';
-import { TableOptions, TableButtonColor, TableButtonIcon } from 'src/app/components/table/table-models';
+import { GenericPageEdit } from 'src/app/shared/abstracts/generic.page-edit';
 import { ItensModalComponent } from './itens-modal/itens-modal.component';
-
+import { TableOptions, TableButtonColor, TableButtonIcon } from 'src/app/components/table/table-models';
 
 @Component({
   selector: 'app-order-edit',
@@ -31,7 +31,7 @@ export class OrderEditComponent extends GenericPageEdit<Order, OrderService> {
     headers: ['Nome', 'E-mail', 'CPF'],
     emptyMessage: 'Nenhum Registro encontrado',
     buttons: [
-      { eventHandler: (event) => this.goToEdit(event.id), title: 'Editar', color: TableButtonColor.PRIMARY, icon: TableButtonIcon.EDIT },
+      { eventHandler: (event) => this.goToEdit(event), title: 'Editar', color: TableButtonColor.PRIMARY, icon: TableButtonIcon.EDIT },
       { eventHandler: (event) => this.removeIten(event), title: 'Deletar', color: TableButtonColor.DANGER, icon: TableButtonIcon.TRASH }
     ]
   };
@@ -95,8 +95,9 @@ export class OrderEditComponent extends GenericPageEdit<Order, OrderService> {
     })
   }
 
-  goToEdit(id) {
-
+  goToEdit(iten: ItenOrder) {
+    this.modalproducts.setIten(iten);
+    this.removeIten(iten);
   }
 
   openModalProduct() {
@@ -123,9 +124,4 @@ export class OrderEditComponent extends GenericPageEdit<Order, OrderService> {
     this.formulario.patchValue({ amount: total })
     this.onSubmit();
   }
-
-  listFactory() {
-
-  }
-
 }

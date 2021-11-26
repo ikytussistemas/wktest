@@ -17,16 +17,10 @@ export class ConsultaCepService {
   urlCidades = '../../../assets/dados/cidades.json';
   urlEstados = '../../../assets/dados/estadosbr.json';
 
-  consultaCEP(cep: string): Observable<any>{
-    // Nova variável "cep" somente com dígitos.
+  consultaCEP(cep: string): Observable<any> {
     cep = cep.replace(/\D/g, '');
-
-    // Verifica se campo cep possui valor informado.
     if (cep !== '') {
-      // Expressão regular para validar o CEP.
       const validacep = /^[0-9]{8}$/;
-
-      // Valida o formato do CEP.
       if (validacep.test(cep)) {
         return this.http.get(`//viacep.com.br/ws/${cep}/json`);
       }
@@ -39,13 +33,12 @@ export class ConsultaCepService {
   }
 
   getCidades(idEstado?: number): Observable<Cidade[]> {
-    if(idEstado){
+    if (idEstado) {
       return this.http.get<Cidade[]>(this.urlCidades)
         .pipe(
-          // tslint:disable-next-line:triple-equals
           map((cidades: Cidade[]) => cidades.filter(c => c.estado == idEstado))
         );
-    } else{
+    } else {
       return this.http.get<Cidade[]>(this.urlCidades)
     }
   }
@@ -56,5 +49,4 @@ export class ConsultaCepService {
         map((cidades: Cidade[]) => cidades.filter(c => c.nome === cidade))
       );
   }
-
 }

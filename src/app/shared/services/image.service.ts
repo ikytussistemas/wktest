@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+
 import { EMPTY, Observable } from 'rxjs';
 import { expand, map } from 'rxjs/operators';
 
@@ -86,7 +87,7 @@ export class ImageService {
     return this.storage.ref(`${path}/${id}`).getDownloadURL();
   }
 
-  deleteImg(path: string, id: string){
+  deleteImg(path: string, id: string) {
     const storageRef = this.storage.ref(path);
     storageRef.child(id).delete();
   }

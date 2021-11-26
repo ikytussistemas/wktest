@@ -1,9 +1,9 @@
 import { Component, Injector } from '@angular/core';
-import { TableButtonColor, TableButtonIcon, TableOptions } from 'src/app/components/table/table-models';
-import { ToolBarOptions } from 'src/app/components/toolbars/toolbar-base/toolbar-base.component';
-import { GenericPageList } from 'src/app/shared/abstracts/generic.page-list';
-import { CustomerService } from 'src/app/shared/services';
+
 import { Customer } from '../../../shared/models/customer.model';
+import { CustomerService } from 'src/app/shared/services';
+import { GenericPageList } from 'src/app/shared/abstracts/generic.page-list';
+import { TableButtonColor, TableButtonIcon, TableOptions } from 'src/app/components/table/table-models';
 
 @Component({
   selector: 'app-customers-list',
@@ -11,9 +11,6 @@ import { Customer } from '../../../shared/models/customer.model';
   styleUrls: ['./customers-list.component.scss']
 })
 export class CustomersListComponent extends GenericPageList<Customer, CustomerService> {
-
-  filter: any;
-  toolbarOptions: ToolBarOptions;
 
   tableOptions: TableOptions = {
     entity: this.list,
@@ -40,8 +37,4 @@ export class CustomersListComponent extends GenericPageList<Customer, CustomerSe
   goToEdit(id: string) {
     this.router.navigate([`customers/${id}/edit`])
   }
-
-  filtrar(event?: any) {
-  }
-
 }

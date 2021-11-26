@@ -14,12 +14,12 @@ import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 import { ComponentsModule } from './components/components.module';
 import { ConfigModule } from './config/config.module';
-import { ToastModule } from './components/toast';
 import { ConfirmModule } from './components/confirm';
+import { HomeComponent } from './pages/home/home.component';
 import { LoadingModule } from './components/loading';
+import { ToastModule } from './components/toast';
 
 @NgModule({
   declarations: [

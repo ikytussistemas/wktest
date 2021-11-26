@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CustomersRoutingModule } from './customers-routing.module';
+import { ConfigModule } from '../../config/config.module';
+import { ComponentsModule } from '../../components/components.module';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { CustomersEditComponent } from './customers-edit/customers-edit.component';
-import { ComponentsModule } from '../../components/components.module';
-import { ConfigModule } from '../../config/config.module';
+import { CustomersRoutingModule } from './customers-routing.module';
 
 
 @NgModule({

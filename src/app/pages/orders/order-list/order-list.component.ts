@@ -1,11 +1,9 @@
 import { Component, Injector } from '@angular/core';
-import { time } from 'console';
 
-import { TableButtonColor, TableButtonIcon, TableOptions } from 'src/app/components/table/table-models';
-import { ToolBarOptions } from 'src/app/components/toolbars/toolbar-base/toolbar-base.component';
 import { GenericPageList } from 'src/app/shared/abstracts/generic.page-list';
 import { Order } from 'src/app/shared/models';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { TableButtonColor, TableButtonIcon, TableOptions } from 'src/app/components/table/table-models';
 
 @Component({
   selector: 'app-order-list',
@@ -14,18 +12,13 @@ import { OrderService } from 'src/app/shared/services/order.service';
 })
 export class OrderListComponent extends GenericPageList<Order, OrderService> {
 
-  filter: any;
-  toolbarOptions: ToolBarOptions = {
-    emptyMessage: 'teste'
-  };
-
   tableOptions: TableOptions = {
     entity: this.list,
     fields: [
       { name: 'cod', label: 'Código' },
       { name: 'time', label: 'Data / Hora' },
-      { name: 'customer', sub: 'name', label: 'Cliente'},
-      { name: 'amount', label: 'Valor do Pedido', pipe: 'currency'}
+      { name: 'customer', sub: 'name', label: 'Cliente' },
+      { name: 'amount', label: 'Valor do Pedido', pipe: 'currency' }
     ],
     headers: ['Código', 'Data/Hora', 'Cliente', 'Valor do Pedido'],
     emptyMessage: 'Nenhum registro encontrado',
@@ -45,8 +38,4 @@ export class OrderListComponent extends GenericPageList<Order, OrderService> {
   goToEdit(id: string) {
     this.router.navigate([`/orders/${id}/edit`])
   }
-
-  filtrar(event?: any) {
-  }
-
 }

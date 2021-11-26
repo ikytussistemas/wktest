@@ -8,31 +8,31 @@ export abstract class GenericService<T extends { id: string }> {
   constructor(
     protected injector: Injector,
     protected collection: string,
-    ) {
-      this.db = this.injector.get(AngularFirestore);
+  ) {
+    this.db = this.injector.get(AngularFirestore);
   }
 
   getDoc(id: string) {
     return this.db
-    .collection<T>(this.collection)
-    .doc(id)
-    .valueChanges()
+      .collection<T>(this.collection)
+      .doc(id)
+      .valueChanges()
   }
 
   getList() {
     return this.db
-    .collection<T>(this.collection, ref => ref.orderBy('name'))
-    .snapshotChanges();
+      .collection<T>(this.collection, ref => ref.orderBy('name'))
+      .snapshotChanges();
   }
 
-  getListPage(offset: number, startKey='', orderField: string){
-      return this.db
+  getListPage(offset: number, startKey = '', orderField: string) {
+    return this.db
       .collection<T>(this.collection, ref => ref.orderBy(orderField).startAfter(startKey).limit(offset))
       .snapshotChanges();
   }
 
   create(object: T) {
-    return new Promise<any>((resolve, reject) =>{
+    return new Promise<any>((resolve, reject) => {
       this.db
         .collection<T>(this.collection)
         .add(object)

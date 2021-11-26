@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+
 import { take } from 'rxjs/operators';
 
+import { ItenOrder, Product } from '../../../../shared/models';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { ProductService } from 'src/app/shared/services';
-import { ItenOrder, Product } from '../../../../shared/models';
 
 @Component({
   selector: 'app-itens-modal',
@@ -43,12 +44,22 @@ export class ItensModalComponent implements OnInit {
     })
   }
 
+  setIten(iten: ItenOrder) {
+    this.iten = iten;
+    this.product = iten.product;
+    this.open();
+  }
+
   refreshItem() {
     const iten = this.product
     this.iten.product = iten;
   }
   refreshValues() {
     this.iten.amount = this.iten.product.value * this.iten.quantity;
+  }
+
+  checkProduct(prod1: Product, prod2: Product) {
+    return prod1 && prod2 ? (prod1.name === prod2.name && prod1.id === prod2.id) : prod1 === prod2;
   }
 
   save() {

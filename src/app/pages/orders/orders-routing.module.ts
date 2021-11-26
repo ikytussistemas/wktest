@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OrderMenuComponent } from './order-menu/order-menu.component';
-import { OrderListComponent } from './order-list/order-list.component';
+
 import { OrderEditComponent } from './order-edit/order-edit.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { OrderMenuComponent } from './order-menu/order-menu.component';
 
 const routes: Routes = [
   { path: '', component: OrderMenuComponent },

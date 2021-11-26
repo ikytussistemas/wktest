@@ -7,7 +7,7 @@ type TableButton = {
   icon?: TableButtonIcon,
 }
 
-type PipeType = 'currency'| 'length' | 'lowerCase' | 'mes' | 'semana' | 'uppercase';
+type PipeType = 'currency' | 'length' | 'lowerCase' | 'mes' | 'semana' | 'uppercase';
 
 export enum TableButtonColor {
   PRIMARY = 'outline-primary',

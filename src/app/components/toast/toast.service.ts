@@ -19,16 +19,16 @@ export class ToastService {
   ) { }
 
   success(message: string) {
-    this.show({type: 'success', text: message});
+    this.show({ type: 'success', text: message });
   }
   info(message: string) {
-    this.show({type: 'info' , text: message});
+    this.show({ type: 'info', text: message });
   }
   warning(message: string) {
-    this.show({type: 'warning' , text: message});
+    this.show({ type: 'warning', text: message });
   }
   danger(message: string) {
-    this.show({type: 'danger', text: message});
+    this.show({ type: 'danger', text: message });
   }
 
   private show(data: ToastData) {

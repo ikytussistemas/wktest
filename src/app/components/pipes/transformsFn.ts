@@ -1,4 +1,4 @@
-import { CurrencyPipe, formatCurrency, getCurrencySymbol } from "@angular/common";
+import { formatCurrency, getCurrencySymbol } from "@angular/common";
 
 export function semana(value) {
   switch (value) {
@@ -73,11 +73,11 @@ export function mes(value) {
   }
 }
 
-export function lowerCase(value: string){
+export function lowerCase(value: string) {
   return value.toLowerCase()
 }
 
-export function upperCase(value: string){
+export function upperCase(value: string) {
   return value.toUpperCase()
 }
 
